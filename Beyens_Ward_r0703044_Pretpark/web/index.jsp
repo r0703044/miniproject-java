@@ -36,7 +36,7 @@
                 <a href="OverzichtBezoekers.jsp"> overzicht bezoekers </a>
                 <a href="OverzichtPretparken.jsp"> overzicht pretparken </a>
             </p>
-
+            
             <footer>
                 <p>&copy; Ward Beyens</p>
             </footer>

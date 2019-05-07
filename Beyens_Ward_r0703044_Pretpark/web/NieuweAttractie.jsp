@@ -18,23 +18,7 @@
         <link rel="stylesheet" href="r0703044basis.css">
     </head>
     <body>
-        <% ArrayList<Personeelslid> personeelsleden = new ArrayList<>();
-
-            Personeelslid personeelslid1 = new Personeelslid("Tony", "Stark");
-            Personeelslid personeelslid2 = new Personeelslid("Bruce", "Banner");
-            Personeelslid personeelslid3 = new Personeelslid("Natasha", "Romanov");
-            Personeelslid personeelslidEerste = new Personeelslid("Gertje", "Optnippertje");
-            Personeelslid personeelslidTweede = new Personeelslid("Thibaut", "Defrisco");
-            Personeelslid personeelslidDerde = new Personeelslid("Knapen", "Dokter");
-            personeelsleden.add(personeelslid1);
-            personeelsleden.add(personeelslid2);
-            personeelsleden.add(personeelslid3);
-            personeelsleden.add(personeelslidEerste);
-            personeelsleden.add(personeelslidTweede);
-            personeelsleden.add(personeelslidDerde);
-        %>
         <div class="container">                    
-            <%Pretpark nieuwepretparknaam = (Pretpark) request.getAttribute("pretpark");%>           
             <h1>Vul hier de gegevens van de nieuwe Attractie in!</h1>        
             <form action ="MaakServlet">              
                 <p>
@@ -59,9 +43,14 @@
                 </p>
 
                 <p>
+                    <% ArrayList<Personeelslid> personeelsleden
+                                = (ArrayList<Personeelslid>) session.getAttribute("personeelsleden");%>
                     <select name="personeelsleden">
                         <% for (int index = 0; index < personeelsleden.size(); index++) {%>
-                        <option value="<%=(index)%>"><%=personeelsleden.get(index)%> </option>
+                        <option value="<%=(index)%>">
+                            <%=personeelsleden.get(index).getFamilienaam()%> 
+                            <%=personeelsleden.get(index).getVoornaam()%>
+                        </option>
                         <%}%>
                     </select>
                 </p>

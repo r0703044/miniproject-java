@@ -21,15 +21,17 @@
     <body>
         <div class="container">
             <%Pretpark nieuwpretpark = (Pretpark) request.getAttribute("pretpark");%>
+            <%ArrayList<Pretpark> pretparken = (ArrayList<Pretpark>) session.getAttribute("pretparken");%>
 
-            <h1>Overzicht van de attracties in het pretpark <br> <span class="inputTitel"><%=nieuwpretpark.getNaam()%></span></h1>        
+            <h1>Overzicht van de attracties in het pretpark </h1> 
+            <h1><span class="inputTitel"><%=pretparken.get(pretparken.size()-1).getNaam()%></span></h1>      
 
-            <%for (int index = 0; index < nieuwpretpark.getAttracties().size(); index++) {%>
+            <%for (int index = 0; index < pretparken.get(pretparken.size()-1).getAttracties().size(); index++) {%>
 
-            <img src="images/<%=nieuwpretpark.getAttracties().get(index).getNaam()%>.jpg" 
-                 alt="<%=nieuwpretpark.getAttracties().get(index).getNaam()%>" 
+            <img src="images/<%=pretparken.get(pretparken.size()-1).getAttracties().get(index).getNaam()%>.jpg" 
+                 alt="<%=pretparken.get(pretparken.size()-1).getAttracties().get(index).getNaam()%>" 
                  width="400" onerror="this.src='images/geenFoto.jpg'">
-            <p class="bijFoto"> <%=nieuwpretpark.getAttracties().get(index).getNaam()%> <span class="fas fa-level-up-alt"></span></p>
+            <p class="bijFoto"> <%=pretparken.get(pretparken.size()-1).getAttracties().get(index).getNaam()%> <span class="fas fa-level-up-alt"></span></p>
             <p class="bijFoto"> duur: <span class="fas fa-level-up-alt"></span></p>
             <p class="bijFoto"> verantwoordelijke:  <span class="fas fa-level-up-alt"></span></p>
 

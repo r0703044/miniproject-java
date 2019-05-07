@@ -6,6 +6,7 @@
     studentNr  : r0703044
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="fact.it.www.beans.Persoon"%>
 <%@page import="fact.it.www.beans.Bezoeker"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,19 +19,21 @@
     </head>
     <body>
         <div class="container">
-            <%Bezoeker bezoekernaam = (Bezoeker)request.getAttribute("bezoeker");%>
+            <% //Bezoeker bezoekernaam = (Bezoeker)request.getAttribute("bezoeker");
+                ArrayList<Bezoeker> bezoekers = (ArrayList<Bezoeker>) session.getAttribute("bezoekers");
+            %>
             <p>
-                De volgende bezoeker werd geregistreerd: <%=bezoekernaam.toString()%>
+                De volgende bezoeker werd geregistreerd: <%=bezoekers.get(bezoekers.size()-1).toString()%>
             </p>
             <p>
                 <%if (request.getParameter("attractieKeuze").equals("leeg")) {%>
                 U heeft geen favoriet gekozen. <%
                 } else {%>
-                Uw wishlist = <%=bezoekernaam.getWishlist().get(0)%>
+                Uw wishlist = <%=bezoekers.get(bezoekers.size()-1).getWishlist().get(0)%>
                 <%}%>
                 </c:if>
             </p>
-            
+
             <p class="padding"><a href="NieuweBezoeker.jsp">bezoeker toevoegen</a></p>
 
             <p class="padding"><a href="index.jsp">Ga terug naar Homepagina</a></p>

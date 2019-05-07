@@ -6,6 +6,7 @@
     studentNr  : r0703044
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="fact.it.www.beans.Personeelslid"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,11 +18,13 @@
     </head>
     <body>
         <div class="container">
-            <%Personeelslid personeel = (Personeelslid)request.getAttribute("personeelslid");%>
+            <% // Personeelslid personeel = (Personeelslid)request.getAttribute("personeelslid");
+            ArrayList<Personeelslid> personeelsleden = (ArrayList<Personeelslid>)session.getAttribute("personeelsleden");
+            %>
             <p>
                 Hetvolgende personeelslid werd geregistreerd:</p>
             <p>
-                <%=personeel.toString()%>
+                <%= personeelsleden.get(personeelsleden.size()-1).toString()%>
             </p>  
             <p class="padding"><a href="NieuwPersoneelslid.jsp">personeelslid toevoegen</a></p>
             <p class="padding"><a href="index.jsp">Ga terug naar Homepagina</a></p>

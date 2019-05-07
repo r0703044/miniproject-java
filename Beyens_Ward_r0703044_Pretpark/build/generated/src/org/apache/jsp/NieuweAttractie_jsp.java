@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.ArrayList;
+import fact.it.www.beans.Personeelslid;
 import fact.it.www.beans.Pretpark;
 
 public final class NieuweAttractie_jsp extends org.apache.jasper.runtime.HttpJspBase
@@ -46,6 +48,8 @@ public final class NieuweAttractie_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -54,6 +58,23 @@ public final class NieuweAttractie_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("        <link rel=\"stylesheet\" href=\"r0703044basis.css\">\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
+      out.write("        ");
+ ArrayList<Personeelslid> personeelsleden = new ArrayList<>();
+
+            Personeelslid personeelslid1 = new Personeelslid("Tony", "Stark");
+            Personeelslid personeelslid2 = new Personeelslid("Bruce", "Banner");
+            Personeelslid personeelslid3 = new Personeelslid("Natasha", "Romanov");
+            Personeelslid personeelslidEerste = new Personeelslid("Gertje", "Optnippertje");
+            Personeelslid personeelslidTweede = new Personeelslid("Thibaut", "Defrisco");
+            Personeelslid personeelslidDerde = new Personeelslid("Knapen", "Dokter");
+            personeelsleden.add(personeelslid1);
+            personeelsleden.add(personeelslid2);
+            personeelsleden.add(personeelslid3);
+            personeelsleden.add(personeelslidEerste);
+            personeelsleden.add(personeelslidTweede);
+            personeelsleden.add(personeelslidDerde);
+        
+      out.write("\n");
       out.write("        <div class=\"container\">                    \n");
       out.write("            ");
 Pretpark nieuwepretparknaam = (Pretpark) request.getAttribute("pretpark");
@@ -81,6 +102,23 @@ Pretpark nieuwepretparknaam = (Pretpark) request.getAttribute("pretpark");
       out.write("                <p> \n");
       out.write("                    <label for=\"naamFoto\"> Naam van de foto: </label>\n");
       out.write("                    <input type=\"text\" name=\"naamFoto\" id=\"naamFoto\">\n");
+      out.write("                </p>\n");
+      out.write("\n");
+      out.write("                <p>\n");
+      out.write("                    <select name=\"personeelsleden\">\n");
+      out.write("                        ");
+ for (int index = 0; index < personeelsleden.size(); index++) {
+      out.write("\n");
+      out.write("                        <option value=\"");
+      out.print((index));
+      out.write('"');
+      out.write('>');
+      out.print(personeelsleden.get(index));
+      out.write(" </option>\n");
+      out.write("                        ");
+}
+      out.write("\n");
+      out.write("                    </select>\n");
       out.write("                </p>\n");
       out.write("\n");
       out.write("                <p> \n");

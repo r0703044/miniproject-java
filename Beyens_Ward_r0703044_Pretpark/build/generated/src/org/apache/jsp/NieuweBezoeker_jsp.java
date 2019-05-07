@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.ArrayList;
+import fact.it.www.beans.Pretpark;
 
 public final class NieuweBezoeker_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,6 +46,8 @@ public final class NieuweBezoeker_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -68,10 +72,6 @@ public final class NieuweBezoeker_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                </p>\n");
       out.write("\n");
       out.write("                </p>\n");
-      out.write("                <input type=\"checkbox\" name=\"eerstekeer\" value=\"eerstekeer\" id=\"eerstekeer\"> \n");
-      out.write("                <label for=\"eerstekeer\">Ik heb het pretpark al eens bezocht</label>\n");
-      out.write("                </p>\n");
-      out.write("\n");
       out.write("                </p>\n");
       out.write("                <label for=\"attractieKeuze\"> Voorkeur attractie: </label>\n");
       out.write("                <select name=\"attractieKeuze\"> \n");
@@ -92,36 +92,41 @@ public final class NieuweBezoeker_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\n");
       out.write("                </select>\n");
       out.write("                </p>\n");
-      out.write("\n");
-      out.write("                <p> Pretpark: \n");
+      out.write("                <p> Pretpark:\n");
+      out.write("                </p>\n");
+      out.write("                <p> \n");
       out.write("                    ");
-String[] pretparkkeuze = {"Efteling", "Bobbejaanland", "Walibi", "Fantasialand", "Plopsaland"};
-                            for (int index = 0; index < pretparkkeuze.length; index++) {
+ArrayList<Pretpark> pretparkkeuze = (ArrayList<Pretpark>)session.getAttribute("pretparken");
+                        for (int index = 0; index < pretparkkeuze.size() ; index++) {
       out.write("\n");
       out.write("                    <input type=\"radio\" \n");
       out.write("                           name=\"pretparkkeuze\" \n");
       out.write("                           id=\"");
-      out.print(pretparkkeuze[index]);
+      out.print(index);
       out.write("\" \n");
       out.write("                           value=\"");
-      out.print(pretparkkeuze[index]);
+      out.print(index);
       out.write("\">\n");
       out.write("                    &nbsp;                    \n");
       out.write("                    <label for=\"");
-      out.print(pretparkkeuze[index]);
+      out.print(index);
       out.write("\">\n");
       out.write("                        ");
-      out.print(pretparkkeuze[index]);
+      out.print(pretparkkeuze.get(index).getNaam());
       out.write("\n");
       out.write("                    </label>\n");
-      out.write("                    ");
-}
       out.write("\n");
       out.write("                </p>\n");
+      out.write("                ");
+}
+      out.write("\n");
       out.write("                <p>\n");
       out.write("                </p>\n");
       out.write("                <p> \n");
       out.write("                    <input type=\"submit\" value=\"Ga door als bezoeker zonder pretparkregistratie\" name=\"bezoeker\" class=\"verzendenCSS\"> \n");
+      out.write("                </p>\n");
+      out.write("                <p> \n");
+      out.write("                    <input type=\"submit\" value=\"Ga door als bezoeker met pretparkregistratie\" name=\"bezoekerExtra\" class=\"verzendenCSS\"> \n");
       out.write("                </p>\n");
       out.write("            </form>\n");
       out.write("            <p> <a href=\"index.jsp\">Ga terug naar de homepagina</a> </p>\n");

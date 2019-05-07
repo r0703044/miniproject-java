@@ -6,6 +6,8 @@
     studentNr  : r0703044
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="fact.it.www.beans.Pretpark"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -45,15 +47,15 @@
                 <p> Pretpark:
                 </p>
                 <p> 
-                    <%String[] pretparkkeuze = {"Efteling", "Bobbejaanland", "Walibi", "Fantasialand", "Plopsaland"};
-                        for (int index = 0; index < pretparkkeuze.length; index++) {%>
+                    <%ArrayList<Pretpark> pretparkkeuze = (ArrayList<Pretpark>)session.getAttribute("pretparken");
+                        for (int index = 0; index < pretparkkeuze.size() ; index++) {%>
                     <input type="radio" 
                            name="pretparkkeuze" 
-                           id="<%=pretparkkeuze[index]%>" 
-                           value="<%=pretparkkeuze[index]%>">
+                           id="<%=index%>" 
+                           value="<%=index%>">
                     &nbsp;                    
-                    <label for="<%=pretparkkeuze[index]%>">
-                        <%=pretparkkeuze[index]%>
+                    <label for="<%=index%>">
+                        <%=pretparkkeuze.get(index).getNaam()%>
                     </label>
 
                 </p>
