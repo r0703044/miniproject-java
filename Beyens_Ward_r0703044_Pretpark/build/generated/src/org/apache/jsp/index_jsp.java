@@ -65,7 +65,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("            <p class=\"meer\">\n");
       out.write("                <a href=\"NieuwPersoneelslid.jsp\"> Nieuw Personeelslid </a>\n");
-      out.write("                <a href=\"OpvulServlet\"> Opvullen </a>\n");
+      out.write("                <a href=\"OpvulServlet\"> <span class=\"aandachtextra\">opvullen</span>  </a>\n");
       out.write("            </p>\n");
       out.write("\n");
       out.write("            <p class=\"meer\">\n");
