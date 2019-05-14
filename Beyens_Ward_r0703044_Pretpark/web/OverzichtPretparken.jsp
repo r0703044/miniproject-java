@@ -24,7 +24,12 @@
             <p>U moet eerst de lijsten <span class="aandacht">opvullen</span> in de homepagina.</p>
             <%} else {
                 for (int index = 0; index < pretparken.size(); index++) {%>
-            <p><%= pretparken.get(index).getNaam()%> </p>
+
+            <form action ="MaakServlet">
+                <p> 
+                    <button type="submit" value="<%= index%>" name="overzichtPretparken" class="verzendenCSS"> <%= pretparken.get(index).getNaam()%> </button>
+                </p>
+            </form>
             <%}
                 }%>
             <p> <a href="index.jsp">Ga terug naar de homepagina</a> </p>

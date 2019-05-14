@@ -67,9 +67,17 @@ public final class OverzichtPretparken_jsp extends org.apache.jasper.runtime.Htt
 } else {
                 for (int index = 0; index < pretparken.size(); index++) {
       out.write("\n");
-      out.write("            <p>");
+      out.write("\n");
+      out.write("            <form action =\"MaakServlet.java\">\n");
+      out.write("                <br>\n");
+      out.write("                <p> \n");
+      out.write("                    <input type=\"submit\" value=\"");
       out.print( pretparken.get(index).getNaam());
-      out.write(" </p>\n");
+      out.write("\" name=\"");
+      out.print( pretparken.get(index).getNaam());
+      out.write("\" class=\"verzendenCSS\"> \n");
+      out.write("                </p>\n");
+      out.write("            </form>\n");
       out.write("            ");
 }
                 }

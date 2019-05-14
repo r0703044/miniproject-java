@@ -110,22 +110,42 @@ public class MaakServlet extends HttpServlet {
 
             Attractie attractie1 = new Attractie("Python");
             nieuwpretpark.voegAttractieToe(attractie1);
+            attractie1.setDuur(3);
+            Personeelslid nieuwPersoneelslid1 = new Personeelslid("Johny", "English");
+            attractie1.setVerantwoordelijke(nieuwPersoneelslid1);
             Attractie attractie2 = new Attractie("Baron 1898");
             nieuwpretpark.voegAttractieToe(attractie2);
+            attractie2.setDuur(5);
+            Personeelslid nieuwPersoneelslid2 = new Personeelslid("Tony", "Stark");
+            attractie2.setVerantwoordelijke(nieuwPersoneelslid2);
             Attractie attractie3 = new Attractie("Symbolica");
             nieuwpretpark.voegAttractieToe(attractie3);
+            attractie3.setDuur(6);
+            Personeelslid nieuwPersoneelslid3 = new Personeelslid("Steve", "Roggers");
+            attractie3.setVerantwoordelijke(nieuwPersoneelslid3);
             Attractie attractie4 = new Attractie("Fata Morgana");
             nieuwpretpark.voegAttractieToe(attractie4);
+            attractie4.setDuur(8);
+            Personeelslid nieuwPersoneelslid4 = new Personeelslid("Natasha", "Romanov");
+            attractie4.setVerantwoordelijke(nieuwPersoneelslid4);
 
+            //In MaakServlet zorg je ervoor dat dit personeelslid als verantwoordelijke voor de attractie wordt vastgelegd.
             ArrayList<Personeelslid> personeelsleden = (ArrayList<Personeelslid>) session.getAttribute("personeelsleden");
-            Personeelslid personeelslid = personeelsleden.get(0);
-            nieuweAttractie.setVerantwoordelijke(personeelslid);
+            String indexpersoneelslid = request.getParameter("personeelsleden");
+            Integer indexPersoneel = Integer.parseInt(indexpersoneelslid);
+            Personeelslid personeelslidVerantwoordelijke = personeelsleden.get(indexPersoneel);
+            nieuweAttractie.setVerantwoordelijke(personeelslidVerantwoordelijke);
 
             //request.setAttribute("pretpark", nieuwpretpark);
             ArrayList<Pretpark> pretparken = (ArrayList<Pretpark>) session.getAttribute("pretparken");
             pretparken.add(nieuwpretpark);
-            RequestDispatcher rd = request.getRequestDispatcher("OverzichtPretparkAttracties.jsp");
 
+            //aanpassen laatste element naar laatste index
+            Integer grootte = pretparken.size();
+            Integer pretparkIndexIntiger = grootte - 1;
+            request.setAttribute("gekozenIndex", pretparkIndexIntiger);
+
+            RequestDispatcher rd = request.getRequestDispatcher("OverzichtPretparkAttracties.jsp");
             rd.forward(request, response);
         }
         /**
@@ -143,6 +163,34 @@ public class MaakServlet extends HttpServlet {
             ArrayList<Personeelslid> personeelsleden = (ArrayList<Personeelslid>) session.getAttribute("personeelsleden");
             personeelsleden.add(nieuwpersoneel);
 
+            rd.forward(request, response);
+        }
+        /**
+         * OVERZICHT PRETPARKEN INDEX DOORSTUREN
+         */
+        if (request.getParameter("overzichtPretparken") != null) {
+            String pretparkIndex = request.getParameter("overzichtPretparken");
+            ArrayList<Pretpark> pretparken = (ArrayList<Pretpark>) session.getAttribute("pretparken");
+            Integer pretparkIndexIntiger = Integer.parseInt(pretparkIndex);
+            request.setAttribute("gekozenIndex", pretparkIndexIntiger);
+            RequestDispatcher rd = request.getRequestDispatcher("OverzichtPretparkAttracties.jsp");
+            rd.forward(request, response);
+        }
+        /**
+         * ATTRACTIE ZOEKEN
+         */
+        if (request.getParameter("attractieZoeken") != null) {
+            Attractie attractieTeZoeken = new Attractie();
+            session.setAttribute("AttractieGevonden", null);
+            ArrayList<Pretpark> pretparken = (ArrayList<Pretpark>) session.getAttribute("pretparken");
+            for (int index = 0; index < pretparken.size(); index++) {
+                if (pretparken.get(index).zoekAttractieOpNaam(request.getParameter("attractieZoekenNaam")) != null) {
+                    attractieTeZoeken = pretparken.get(index).zoekAttractieOpNaam(request.getParameter("attractieZoekenNaam"));
+                    session.setAttribute("gevondenAttractie", attractieTeZoeken);
+                }
+            }
+
+            RequestDispatcher rd = request.getRequestDispatcher("wijzigenAttractie.jsp");
             rd.forward(request, response);
         }
 

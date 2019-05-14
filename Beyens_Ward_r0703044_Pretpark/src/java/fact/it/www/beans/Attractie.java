@@ -7,27 +7,31 @@ package fact.it.www.beans;
 
 /**
  *
- * Author     : wardb
- * naam       : Ward Beyens
- * studentNr  : r0703044
+ * Author : wardb naam : Ward Beyens studentNr : r0703044
  */
 
 public class Attractie {
+
     private String naam;
     private long duur;
     private String foto;
     private Personeelslid verantwoordelijke;
 
     public Attractie() {
+        verantwoordelijke = new Personeelslid("", "");
     }
 
     public Attractie(String naam) {
         this.naam = naam;
+        verantwoordelijke = new Personeelslid("", "");
+
     }
 
     public Attractie(String naam, long duur) {
         this.naam = naam;
         this.duur = duur;
+        verantwoordelijke = new Personeelslid("", "");
+
     }
 
     public String getNaam() {

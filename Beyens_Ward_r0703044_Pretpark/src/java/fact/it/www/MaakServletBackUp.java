@@ -10,17 +10,17 @@ import fact.it.www.beans.Bezoeker;
 import fact.it.www.beans.Personeelslid;
 import fact.it.www.beans.Pretpark;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Author : wardb naam : Ward Beyens studentNr : r0703044
  */
-@WebServlet(name = "MaakServlet", urlPatterns = {"/MaakServlet"})
 public class MaakServletBackUp extends HttpServlet {
 
     /**
@@ -34,10 +34,13 @@ public class MaakServletBackUp extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+
         /**
          * BEZOEKER
          */
-        if (request.getParameter("bezoeker") != null ) {
+        if (request.getParameter("bezoeker") != null) {
             String voornaam = request.getParameter("voornaam");
             String familienaam = request.getParameter("familienaam");
 
@@ -49,7 +52,10 @@ public class MaakServletBackUp extends HttpServlet {
                 }
             }
             RequestDispatcher rd = request.getRequestDispatcher("VerwelkomBezoeker.jsp");
-            request.setAttribute("bezoeker", bezoekernaam);
+
+            // request.setAttribute("bezoeker", bezoekernaam);
+            ArrayList<Bezoeker> bezoekers = (ArrayList<Bezoeker>) session.getAttribute("bezoekers");
+            bezoekers.add(bezoekernaam);
             rd.forward(request, response);
         }
         /**
@@ -66,12 +72,21 @@ public class MaakServletBackUp extends HttpServlet {
             }
 
             if (request.getParameter("pretparkkeuze") != null) {
-                Pretpark pretparkkeuze = new Pretpark(request.getParameter("pretparkkeuze"));
-                pretparkkeuze.registreerBezoeker(nieuweBezoekerExtra);
+                ArrayList<Pretpark> pretparken = (ArrayList<Pretpark>) session.getAttribute("pretparken");
+                String indexpretparkkeuze = request.getParameter("pretparkkeuze");
+                Integer indexpretpark = Integer.parseInt(indexpretparkkeuze);
+                Pretpark gekozenpretparkdoorbezoeker = pretparken.get(indexpretpark);
+                gekozenpretparkdoorbezoeker.registreerBezoeker(nieuweBezoekerExtra);
             }
 
+            //if (request.getParameter("pretparkkeuze") != null) {
+            //    Pretpark pretparkkeuze = new Pretpark(request.getParameter("pretparkkeuze"));
+            //    pretparkkeuze.registreerBezoeker(nieuweBezoekerExtra);
+            //}
             RequestDispatcher rd = request.getRequestDispatcher("VerwelkomBezoeker.jsp");
-            request.setAttribute("bezoeker", nieuweBezoekerExtra);
+            //request.setAttribute("bezoeker", nieuweBezoekerExtra);
+            ArrayList<Bezoeker> bezoekers = (ArrayList<Bezoeker>) session.getAttribute("bezoekers");
+            bezoekers.add(nieuweBezoekerExtra);
             rd.forward(request, response);
         }
 
@@ -100,8 +115,16 @@ public class MaakServletBackUp extends HttpServlet {
             Attractie attractie4 = new Attractie("Fata Morgana");
             nieuwpretpark.voegAttractieToe(attractie4);
 
+            //In MaakServlet zorg je ervoor dat dit personeelslid als verantwoordelijke voor de attractie wordt vastgelegd.
+            ArrayList<Personeelslid> personeelsleden = (ArrayList<Personeelslid>) session.getAttribute("personeelsleden");
+            Personeelslid personeelslid = personeelsleden.get(0);
+            nieuweAttractie.setVerantwoordelijke(personeelslid);
+
+            //request.setAttribute("pretpark", nieuwpretpark);
+            ArrayList<Pretpark> pretparken = (ArrayList<Pretpark>) session.getAttribute("pretparken");
+            pretparken.add(nieuwpretpark);
             RequestDispatcher rd = request.getRequestDispatcher("OverzichtPretparkAttracties.jsp");
-            request.setAttribute("pretpark", nieuwpretpark);
+
             rd.forward(request, response);
         }
         /**
@@ -114,7 +137,23 @@ public class MaakServletBackUp extends HttpServlet {
             Personeelslid nieuwpersoneel = new Personeelslid(voornaam, familienaam);
 
             RequestDispatcher rd = request.getRequestDispatcher("VerwelkomPersoneelslid.jsp");
-            request.setAttribute("personeelslid", nieuwpersoneel);
+
+            // request.setAttribute("personeelslid", nieuwpersoneel);
+            ArrayList<Personeelslid> personeelsleden = (ArrayList<Personeelslid>) session.getAttribute("personeelsleden");
+            personeelsleden.add(nieuwpersoneel);
+
+            rd.forward(request, response);
+        }
+
+        if (request.getParameter("overzichtPretparken") != null) {
+            String pretparkIndex = request.getParameter("overzichtPretparken");
+            //System.out.println(pretparkIndex);
+            ArrayList<Pretpark> pretparken = (ArrayList<Pretpark>) session.getAttribute("pretparken");
+            Integer pretparkIndexIntiger = Integer.parseInt(pretparkIndex);
+            Pretpark pretparkGekozen = pretparken.get(pretparkIndexIntiger);
+            //System.out.println(pretparkGekozen);
+            pretparken.add(pretparkGekozen);
+            RequestDispatcher rd = request.getRequestDispatcher("OverzichtPretparkAttracties.jsp");
             rd.forward(request, response);
         }
 

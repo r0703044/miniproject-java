@@ -23,18 +23,23 @@
             <p>Welkom op mijn MINIproject over mijn eigen gemaakte pretpark!</p>
             <img src="images/Pretpark.jpg" alt="pretpark foto">
             <p class="meer">
-                <a href="NieuweBezoeker.jsp"> Nieuwe bezoeker </a>
-                <a href="NieuwPretpark.jsp"> Nieuw Pretpark </a>
+                <a href="NieuweBezoeker.jsp"> nieuwe bezoeker </a>
+                <a href="NieuwPretpark.jsp"> nieuw Pretpark </a>
             </p>
 
             <p class="meer">
-                <a href="NieuwPersoneelslid.jsp"> Nieuw Personeelslid </a>
+                <a href="NieuwPersoneelslid.jsp"> nieuw Personeelslid </a>
                 <a href="OpvulServlet"> <span class="aandachtextra">opvullen</span>  </a>
             </p>
 
             <p class="meer">
                 <a href="OverzichtBezoekers.jsp"> overzicht bezoekers </a>
                 <a href="OverzichtPretparken.jsp"> overzicht pretparken </a>
+            </p>
+            
+            <p class="meer">
+                <a href="ZoekenAttractie.jsp"> attractie zoeken</a>
+                <a href="#"> naar boven </a>
             </p>
             
             <footer>

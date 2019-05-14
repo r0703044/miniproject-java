@@ -10,7 +10,6 @@ import fact.it.www.beans.Bezoeker;
 import fact.it.www.beans.Personeelslid;
 import fact.it.www.beans.Pretpark;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

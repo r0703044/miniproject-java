@@ -21,19 +21,25 @@
     <body>
         <div class="container">
             <%Pretpark nieuwpretpark = (Pretpark) request.getAttribute("pretpark");%>
-            <%ArrayList<Pretpark> pretparken = (ArrayList<Pretpark>) session.getAttribute("pretparken");%>
+            <%ArrayList<Pretpark> pretparken = (ArrayList<Pretpark>) session.getAttribute("pretparken");
+            Integer gekozenIndex = (Integer) request.getAttribute("gekozenIndex"); %>
 
             <h1>Overzicht van de attracties in het pretpark </h1> 
-            <h1><span class="inputTitel"><%=pretparken.get(pretparken.size()-1).getNaam()%></span></h1>      
+            <h1><span class="inputTitel"><%=pretparken.get(gekozenIndex).getNaam()%></span></h1>      
 
-            <%for (int index = 0; index < pretparken.get(pretparken.size()-1).getAttracties().size(); index++) {%>
+            <%for (int index = 0; index < pretparken.get(gekozenIndex).getAttracties().size(); index++) {%>
 
-            <img src="images/<%=pretparken.get(pretparken.size()-1).getAttracties().get(index).getNaam()%>.jpg" 
-                 alt="<%=pretparken.get(pretparken.size()-1).getAttracties().get(index).getNaam()%>" 
+            <img src="images/<%=pretparken.get(gekozenIndex).getAttracties().get(index).getNaam()%>.jpg" 
+                 alt="<%=pretparken.get(gekozenIndex).getAttracties().get(index).getNaam()%>" 
                  width="400" onerror="this.src='images/geenFoto.jpg'">
-            <p class="bijFoto"> <%=pretparken.get(pretparken.size()-1).getAttracties().get(index).getNaam()%> <span class="fas fa-level-up-alt"></span></p>
-            <p class="bijFoto"> duur: <span class="fas fa-level-up-alt"></span></p>
-            <p class="bijFoto"> verantwoordelijke:  <span class="fas fa-level-up-alt"></span></p>
+            <p class="bijFoto"> <%=pretparken.get(gekozenIndex).getAttracties().get(index).getNaam()%> <span class="fas fa-level-up-alt"></span></p>
+            <p class="bijFoto"> duur: <%= pretparken.get(gekozenIndex).getAttracties().get(index).getDuur()%>
+                <span class="fas fa-level-up-alt"></span></p>
+            <p class="bijFoto"> verantwoordelijke:
+                <%= pretparken.get(gekozenIndex).getAttracties().get(index).getVerantwoordelijke().getFamilienaam()%>
+                 
+                <%= pretparken.get(gekozenIndex).getAttracties().get(index).getVerantwoordelijke().getVoornaam()%>
+                <span class="fas fa-level-up-alt"></span></p>
 
             <%}%>
             <p> <a href="index.jsp">Ga terug naar de homepagina</a> </p>
