@@ -5,15 +5,11 @@
         <group>
             <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/web/NieuweAttractie.jsp</file>
             <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/src/java/fact/it/www/MaakServlet.java</file>
-            <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/src/java/fact/it/www/OpvulServlet.java</file>
-            <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/web/VerwelkomBezoeker.jsp</file>
-            <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/web/NieuwPretpark.jsp</file>
-            <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/web/NieuwPersoneelslid.jsp</file>
+            <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/src/java/fact/it/www/beans/Attractie.java</file>
             <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/web/OverzichtPretparkAttracties.jsp</file>
             <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/web/index.jsp</file>
             <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/web/OverzichtBezoekers.jsp</file>
-            <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/web/NieuweBezoeker.jsp</file>
-            <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/web/VerwelkomPersoneelslid.jsp</file>
+            <file>file:/C:/Users/wardb/Desktop/miniproject-java/Beyens_Ward_r0703044_Pretpark/web/wijzigenAttractie.jsp</file>
         </group>
     </open-files>
 </project-private>

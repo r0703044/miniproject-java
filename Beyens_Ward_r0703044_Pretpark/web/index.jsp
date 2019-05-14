@@ -26,22 +26,27 @@
                 <a href="NieuweBezoeker.jsp"> nieuwe bezoeker </a>
                 <a href="NieuwPretpark.jsp"> nieuw Pretpark </a>
             </p>
-
             <p class="meer">
                 <a href="NieuwPersoneelslid.jsp"> nieuw Personeelslid </a>
                 <a href="OpvulServlet"> <span class="aandachtextra">opvullen</span>  </a>
             </p>
-
             <p class="meer">
                 <a href="OverzichtBezoekers.jsp"> overzicht bezoekers </a>
                 <a href="OverzichtPretparken.jsp"> overzicht pretparken </a>
             </p>
-            
-            <p class="meer">
-                <a href="ZoekenAttractie.jsp"> attractie zoeken</a>
-                <a href="#"> naar boven </a>
-            </p>
-            
+            <br>
+            <br>
+            <hr>
+            <h2>Attractie zoeken </h2>
+            <form action ="MaakServlet">
+                <p> 
+                    <label for="attractieZoekenNaam"> De naam van de attractie die u wilt zoeken:  </label>
+                    <input type="text" name="attractieZoekenNaam" id="attractieZoekenNaam">
+                </p>
+                <p> 
+                    <input type="submit" value="Zoeken!" name="attractieZoeken" class="verzendenCSS"> 
+                </p>
+            </form>
             <footer>
                 <p>&copy; Ward Beyens</p>
             </footer>

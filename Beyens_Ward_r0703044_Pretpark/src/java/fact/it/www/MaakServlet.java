@@ -105,27 +105,32 @@ public class MaakServlet extends HttpServlet {
             String naamFoto = request.getParameter("naamFoto");
 
             Attractie nieuweAttractie = new Attractie(naamAttractie, duur);
+            nieuweAttractie.setFoto(naamFoto);
 
             nieuwpretpark.voegAttractieToe(nieuweAttractie);
 
             Attractie attractie1 = new Attractie("Python");
             nieuwpretpark.voegAttractieToe(attractie1);
             attractie1.setDuur(3);
+            attractie1.setFoto("Python");
             Personeelslid nieuwPersoneelslid1 = new Personeelslid("Johny", "English");
             attractie1.setVerantwoordelijke(nieuwPersoneelslid1);
             Attractie attractie2 = new Attractie("Baron 1898");
             nieuwpretpark.voegAttractieToe(attractie2);
             attractie2.setDuur(5);
+            attractie2.setFoto("Baron 1898");
             Personeelslid nieuwPersoneelslid2 = new Personeelslid("Tony", "Stark");
             attractie2.setVerantwoordelijke(nieuwPersoneelslid2);
             Attractie attractie3 = new Attractie("Symbolica");
             nieuwpretpark.voegAttractieToe(attractie3);
             attractie3.setDuur(6);
+            attractie3.setFoto("Symbolica");
             Personeelslid nieuwPersoneelslid3 = new Personeelslid("Steve", "Roggers");
             attractie3.setVerantwoordelijke(nieuwPersoneelslid3);
             Attractie attractie4 = new Attractie("Fata Morgana");
             nieuwpretpark.voegAttractieToe(attractie4);
             attractie4.setDuur(8);
+            attractie4.setFoto("Fata Morgana");
             Personeelslid nieuwPersoneelslid4 = new Personeelslid("Natasha", "Romanov");
             attractie4.setVerantwoordelijke(nieuwPersoneelslid4);
 
@@ -176,6 +181,7 @@ public class MaakServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("OverzichtPretparkAttracties.jsp");
             rd.forward(request, response);
         }
+
         /**
          * ATTRACTIE ZOEKEN
          */
@@ -187,8 +193,29 @@ public class MaakServlet extends HttpServlet {
                 if (pretparken.get(index).zoekAttractieOpNaam(request.getParameter("attractieZoekenNaam")) != null) {
                     attractieTeZoeken = pretparken.get(index).zoekAttractieOpNaam(request.getParameter("attractieZoekenNaam"));
                     session.setAttribute("gevondenAttractie", attractieTeZoeken);
+                    RequestDispatcher rd = request.getRequestDispatcher("wijzigenAttractie.jsp");
+                    rd.forward(request, response);
                 }
             }
+            RequestDispatcher rd = request.getRequestDispatcher("nietGevonden.jsp");
+            rd.forward(request, response);
+        }
+
+        /**
+         * ATTRACTIE wijzigen
+         */
+        if (request.getParameter("attractieWijzigen") != null) {
+
+            Attractie attractieTeWijzigen = (Attractie) session.getAttribute("gevondenAttractie");
+            //session.setAttribute("AttractieTeWijzigen", attractieTeWijzigen);
+            if (!"".equals(request.getParameter("attractieWijzigenNaam"))) {
+                attractieTeWijzigen.setNaam(request.getParameter("attractieWijzigenNaam"));
+            } else if (!"".equals(request.getParameter("attractieWijzigenDuur"))) {
+                attractieTeWijzigen.setDuur(Long.parseLong(request.getParameter("attractieWijzigenDuur")));
+            } else if (!"".equals(request.getParameter("attractieWijzigenFoto"))) {
+                attractieTeWijzigen.setFoto(request.getParameter("attractieWijzigenFoto"));
+            }
+            session.setAttribute("gevondenAttractie", attractieTeWijzigen);
 
             RequestDispatcher rd = request.getRequestDispatcher("wijzigenAttractie.jsp");
             rd.forward(request, response);

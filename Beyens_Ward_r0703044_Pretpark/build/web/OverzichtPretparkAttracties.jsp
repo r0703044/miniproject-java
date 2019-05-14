@@ -29,11 +29,11 @@
 
             <%for (int index = 0; index < pretparken.get(gekozenIndex).getAttracties().size(); index++) {%>
 
-            <img src="images/<%=pretparken.get(gekozenIndex).getAttracties().get(index).getNaam()%>.jpg" 
-                 alt="<%=pretparken.get(gekozenIndex).getAttracties().get(index).getNaam()%>" 
+            <img src="images/<%=pretparken.get(gekozenIndex).getAttracties().get(index).getFoto()%>.jpg" 
+                 alt="<%=pretparken.get(gekozenIndex).getAttracties().get(index).getFoto()%>" 
                  width="400" onerror="this.src='images/geenFoto.jpg'">
             <p class="bijFoto"> <%=pretparken.get(gekozenIndex).getAttracties().get(index).getNaam()%> <span class="fas fa-level-up-alt"></span></p>
-            <p class="bijFoto"> duur: <%= pretparken.get(gekozenIndex).getAttracties().get(index).getDuur()%>
+            <p class="bijFoto"> duur: <%= pretparken.get(gekozenIndex).getAttracties().get(index).getDuur()%> minuten
                 <span class="fas fa-level-up-alt"></span></p>
             <p class="bijFoto"> verantwoordelijke:
                 <%= pretparken.get(gekozenIndex).getAttracties().get(index).getVerantwoordelijke().getFamilienaam()%>
