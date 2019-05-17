@@ -138,3 +138,12 @@ img {
     font-weight: bold;
     color: #FFFF00
 }
+
+.nadruk{
+    border-left: 5px dotted #990829; 
+    border-right: 5px dotted #990829;
+    border-bottom: 8px dotted #990829; 
+
+    font-weight: 700;
+    padding:0 5px;
+}

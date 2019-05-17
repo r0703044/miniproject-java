@@ -54,7 +54,6 @@ public final class NieuweBezoeker_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>Nieuwe Bezoeker | Pretpark</title>\n");
       out.write("        <link rel=\"stylesheet\" href=\"r0703044basis.css\">\n");
-      out.write("\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <div class=\"container\">\n");

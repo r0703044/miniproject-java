@@ -2,6 +2,8 @@
     Document   : nietGevonden
     Created on : 14-mei-2019, 19:34:51
     Author     : wardb
+    naam       : Ward Beyens
+    studentNr  : r0703044
 --%>
 
 <%@page import="fact.it.www.beans.Attractie"%>

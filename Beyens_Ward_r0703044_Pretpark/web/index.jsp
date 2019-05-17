@@ -4,7 +4,7 @@
     Author     : wardb
     naam       : Ward Beyens
     studentNr  : r0703044
-    werkend 12 op 20
+    werkend 17 op 20
 --%> 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,7 +14,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pretpark Ward Beyens</title>
         <link rel="stylesheet" href="r0703044basis.css">
-
     </head>
 
     <body>
@@ -52,6 +51,5 @@
             </footer>
         </div>
     </body>
-
 </html>
 

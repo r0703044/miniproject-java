@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Author : wardb 
+ * naam : Ward Beyens 
+ * studentNr : r0703044
  */
 package fact.it.www;
 
@@ -78,6 +78,9 @@ public class OpvulServlet extends HttpServlet {
         attractie1.setVerantwoordelijke(personeelsleden.get(0));
         attractie2.setVerantwoordelijke(personeelsleden.get(1));
         attractie3.setVerantwoordelijke(personeelsleden.get(2));
+        attractie4.setVerantwoordelijke(personeelsleden.get(0));
+        attractie5.setVerantwoordelijke(personeelsleden.get(1));
+        attractie6.setVerantwoordelijke(personeelsleden.get(2));
         pretpark1.voegAttractieToe(attractie1);
         pretpark1.voegAttractieToe(attractie2);
         pretpark2.voegAttractieToe(attractie3);
@@ -88,7 +91,7 @@ public class OpvulServlet extends HttpServlet {
         pretparken.add(pretpark2);
         pretparken.add(pretpark3);
         session.setAttribute("pretparken", pretparken);
-        
+
         
         
         

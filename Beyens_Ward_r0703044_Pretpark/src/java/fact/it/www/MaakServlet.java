@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Author : wardb 
+ * naam : Ward Beyens 
+ * studentNr : r0703044
  */
 package fact.it.www;
 
@@ -19,9 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Author : wardb naam : Ward Beyens studentNr : r0703044
- */
 @WebServlet(name = "MaakServlet", urlPatterns = {"/MaakServlet"})
 public class MaakServlet extends HttpServlet {
 
@@ -45,16 +42,13 @@ public class MaakServlet extends HttpServlet {
         if (request.getParameter("bezoeker") != null) {
             String voornaam = request.getParameter("voornaam");
             String familienaam = request.getParameter("familienaam");
-
             Bezoeker bezoekernaam = new Bezoeker(voornaam, familienaam);
-
             if (request.getParameter("attractieKeuze") != null) {
                 if (!request.getParameter("attractieKeuze").endsWith("leeg")) {
                     bezoekernaam.voegToeAanWishlist(request.getParameter("attractieKeuze"));
                 }
             }
             RequestDispatcher rd = request.getRequestDispatcher("VerwelkomBezoeker.jsp");
-
             // request.setAttribute("bezoeker", bezoekernaam);
             ArrayList<Bezoeker> bezoekers = (ArrayList<Bezoeker>) session.getAttribute("bezoekers");
             bezoekers.add(bezoekernaam);
@@ -72,7 +66,6 @@ public class MaakServlet extends HttpServlet {
                     nieuweBezoekerExtra.voegToeAanWishlist(request.getParameter("attractieKeuze"));
                 }
             }
-
             if (request.getParameter("pretparkkeuze") != null) {
                 ArrayList<Pretpark> pretparken = (ArrayList<Pretpark>) session.getAttribute("pretparken");
                 String indexpretparkkeuze = request.getParameter("pretparkkeuze");
@@ -80,7 +73,6 @@ public class MaakServlet extends HttpServlet {
                 Pretpark gekozenpretparkdoorbezoeker = pretparken.get(indexpretpark);
                 gekozenpretparkdoorbezoeker.registreerBezoeker(nieuweBezoekerExtra);
             }
-
             //if (request.getParameter("pretparkkeuze") != null) {
             //    Pretpark pretparkkeuze = new Pretpark(request.getParameter("pretparkkeuze"));
             //    pretparkkeuze.registreerBezoeker(nieuweBezoekerExtra);
@@ -91,24 +83,18 @@ public class MaakServlet extends HttpServlet {
             bezoekers.add(nieuweBezoekerExtra);
             rd.forward(request, response);
         }
-
         /**
          * PRETPARK met attracties
          */
         if (request.getParameter("nieuweAttractie") != null) {
-
             String naamPretpark = request.getParameter("naamPretpark");
             Pretpark nieuwpretpark = new Pretpark(naamPretpark);
-
             String naamAttractie = request.getParameter("naamAttractie");
             long duur = Long.parseLong(request.getParameter("duur"));
             String naamFoto = request.getParameter("naamFoto");
-
             Attractie nieuweAttractie = new Attractie(naamAttractie, duur);
             nieuweAttractie.setFoto(naamFoto);
-
             nieuwpretpark.voegAttractieToe(nieuweAttractie);
-
             Attractie attractie1 = new Attractie("Python");
             nieuwpretpark.voegAttractieToe(attractie1);
             attractie1.setDuur(3);
@@ -133,23 +119,19 @@ public class MaakServlet extends HttpServlet {
             attractie4.setFoto("Fata Morgana");
             Personeelslid nieuwPersoneelslid4 = new Personeelslid("Natasha", "Romanov");
             attractie4.setVerantwoordelijke(nieuwPersoneelslid4);
-
             //In MaakServlet zorg je ervoor dat dit personeelslid als verantwoordelijke voor de attractie wordt vastgelegd.
             ArrayList<Personeelslid> personeelsleden = (ArrayList<Personeelslid>) session.getAttribute("personeelsleden");
             String indexpersoneelslid = request.getParameter("personeelsleden");
             Integer indexPersoneel = Integer.parseInt(indexpersoneelslid);
             Personeelslid personeelslidVerantwoordelijke = personeelsleden.get(indexPersoneel);
             nieuweAttractie.setVerantwoordelijke(personeelslidVerantwoordelijke);
-
             //request.setAttribute("pretpark", nieuwpretpark);
             ArrayList<Pretpark> pretparken = (ArrayList<Pretpark>) session.getAttribute("pretparken");
             pretparken.add(nieuwpretpark);
-
             //aanpassen laatste element naar laatste index
             Integer grootte = pretparken.size();
             Integer pretparkIndexIntiger = grootte - 1;
             request.setAttribute("gekozenIndex", pretparkIndexIntiger);
-
             RequestDispatcher rd = request.getRequestDispatcher("OverzichtPretparkAttracties.jsp");
             rd.forward(request, response);
         }
@@ -159,15 +141,11 @@ public class MaakServlet extends HttpServlet {
         if (request.getParameter("personeelslid") != null) {
             String voornaam = request.getParameter("voornaam");
             String familienaam = request.getParameter("familienaam");
-
             Personeelslid nieuwpersoneel = new Personeelslid(voornaam, familienaam);
-
             RequestDispatcher rd = request.getRequestDispatcher("VerwelkomPersoneelslid.jsp");
-
             // request.setAttribute("personeelslid", nieuwpersoneel);
             ArrayList<Personeelslid> personeelsleden = (ArrayList<Personeelslid>) session.getAttribute("personeelsleden");
             personeelsleden.add(nieuwpersoneel);
-
             rd.forward(request, response);
         }
         /**
@@ -181,7 +159,6 @@ public class MaakServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("OverzichtPretparkAttracties.jsp");
             rd.forward(request, response);
         }
-
         /**
          * ATTRACTIE ZOEKEN
          */
@@ -200,27 +177,30 @@ public class MaakServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("nietGevonden.jsp");
             rd.forward(request, response);
         }
-
         /**
          * ATTRACTIE wijzigen
          */
         if (request.getParameter("attractieWijzigen") != null) {
-
             Attractie attractieTeWijzigen = (Attractie) session.getAttribute("gevondenAttractie");
             //session.setAttribute("AttractieTeWijzigen", attractieTeWijzigen);
-            if (!"".equals(request.getParameter("attractieWijzigenNaam"))) {
-                attractieTeWijzigen.setNaam(request.getParameter("attractieWijzigenNaam"));
-            } else if (!"".equals(request.getParameter("attractieWijzigenDuur"))) {
-                attractieTeWijzigen.setDuur(Long.parseLong(request.getParameter("attractieWijzigenDuur")));
-            } else if (!"".equals(request.getParameter("attractieWijzigenFoto"))) {
-                attractieTeWijzigen.setFoto(request.getParameter("attractieWijzigenFoto"));
+            if (!"".equals(request.getParameter("attractieWijzigenNaam")) || !"".equals(request.getParameter("attractieWijzigenFoto")) || !"".equals(request.getParameter("attractieWijzigenDuur")) || !"".equals(request.getParameter("attractieWijzigenPersoneel"))) {
+                String attractieWijzigenNaam = request.getParameter("attractieWijzigenNaam");
+                attractieTeWijzigen.setNaam(attractieWijzigenNaam);
+                String attractieWijzigenDuur = request.getParameter("attractieWijzigenDuur");
+                Long attractieWijzigenDuurLong = Long.parseLong(attractieWijzigenDuur);
+                attractieTeWijzigen.setDuur(attractieWijzigenDuurLong);
+                String attractieWijzigenFoto = request.getParameter("attractieWijzigenFoto");
+                attractieTeWijzigen.setFoto(attractieWijzigenFoto);
+                ArrayList<Personeelslid> personeelsleden = (ArrayList<Personeelslid>) session.getAttribute("personeelsleden");
+                String attractieWijzigenPersoneel = request.getParameter("attractieWijzigenPersoneel");
+                Integer attractieWijzigenPersoneelIndex = Integer.parseInt(attractieWijzigenPersoneel);
+                Personeelslid attractieWijzigenPersoneelGekozen = personeelsleden.get(attractieWijzigenPersoneelIndex);
+                attractieTeWijzigen.setVerantwoordelijke(attractieWijzigenPersoneelGekozen);
             }
             session.setAttribute("gevondenAttractie", attractieTeWijzigen);
-
             RequestDispatcher rd = request.getRequestDispatcher("wijzigenAttractie.jsp");
             rd.forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

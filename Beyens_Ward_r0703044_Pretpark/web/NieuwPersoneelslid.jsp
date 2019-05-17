@@ -13,7 +13,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Nieuw Personeelslid | Pretpark</title>
         <link rel="stylesheet" href="r0703044basis.css">
-
     </head>
     <body>
         <div class="container">
