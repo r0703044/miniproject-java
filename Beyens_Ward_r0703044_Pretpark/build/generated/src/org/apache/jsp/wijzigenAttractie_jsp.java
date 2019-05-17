@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.ArrayList;
+import fact.it.www.beans.Personeelslid;
 import fact.it.www.beans.Attractie;
 
 public final class wijzigenAttractie_jsp extends org.apache.jasper.runtime.HttpJspBase
@@ -46,6 +48,8 @@ public final class wijzigenAttractie_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -53,12 +57,10 @@ public final class wijzigenAttractie_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("        <title> overzicht & wijzigen attractie | Pretpark</title>\n");
       out.write("        <link rel=\"stylesheet\" href=\"r0703044basis.css\">\n");
       out.write("        <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.8.1/css/all.css\" integrity=\"sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf\" crossorigin=\"anonymous\">\n");
-      out.write("\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
  Attractie attractie = (Attractie) session.getAttribute("gevondenAttractie");
-      out.write("\n");
       out.write("\n");
       out.write("        <div class=\"container\">\n");
       out.write("            <h1> overzicht & wijzigen attractie </h1>\n");
@@ -94,28 +96,72 @@ public final class wijzigenAttractie_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\n");
       out.write("                <span class=\"fas fa-level-up-alt\"></span></p>\n");
       out.write("            <br>\n");
-      out.write("            <h2> Wijzigen</h2>\n");
+      out.write("            <h2> Wijzigen van <span class=\"nadruk\"> ");
+      out.print( attractie.getNaam());
+      out.write("</span> </h2>\n");
       out.write("            <br>\n");
       out.write("            <form action =\"MaakServlet\">\n");
       out.write("                <p> \n");
       out.write("                    <label for=\"attractieWijzigenNaam\"> De naam van de attractie wijzigen:  </label>\n");
-      out.write("                    <input type=\"text\" name=\"attractieWijzigenNaam\" id=\"attractieWijzigenNaam\">\n");
+      out.write("                    <input type=\"text\" name=\"attractieWijzigenNaam\" id=\"attractieWijzigenNaam\" value=\"");
+      out.print( attractie.getNaam());
+      out.write("\">\n");
       out.write("                </p>\n");
       out.write("                <p> \n");
       out.write("                    <label for=\"attractieWijzigenDuur\"> De duur van de attractie wijzigen:  </label>\n");
-      out.write("                    <input type=\"text\" name=\"attractieWijzigenDuur\" id=\"attractieWijzigenDuur\">\n");
+      out.write("                    <input type=\"text\" name=\"attractieWijzigenDuur\" id=\"attractieWijzigenDuur\" value=\"");
+      out.print( attractie.getDuur());
+      out.write("\">\n");
       out.write("                </p>\n");
       out.write("                <p> \n");
       out.write("                    <label for=\"attractieWijzigenFoto\"> De naam van de foto wijzigen:  </label>\n");
-      out.write("                    <input type=\"text\" name=\"attractieWijzigenFoto\" id=\"attractieWijzigenFoto\">\n");
+      out.write("                    <input type=\"text\" name=\"attractieWijzigenFoto\" id=\"attractieWijzigenFoto\" value=\"");
+      out.print( attractie.getFoto());
+      out.write("\">\n");
+      out.write("                </p>\n");
+      out.write("                ");
+ArrayList<Personeelslid> personeelsleden = (ArrayList<Personeelslid>) session.getAttribute("personeelsleden");
+      out.write("\n");
+      out.write("                <p> \n");
+      out.write("                    <label for=\"attractieWijzigenPersoneel\"> De naam van de verantwoordelijke wijzigen:  </label>\n");
+      out.write("                    <select name=\"attractieWijzigenPersoneel\" id=\"attractieWijzigenPersoneel\">\n");
+      out.write("                        ");
+ for (int i = 0; i < personeelsleden.size(); i++) {
+      out.write("\n");
+      out.write("                        ");
+if (personeelsleden.get(i).getFamilienaam() == attractie.getVerantwoordelijke().getFamilienaam()) {
+      out.write("\n");
+      out.write("                        <option value=\"");
+      out.print((i));
+      out.write("\" selected> ");
+      out.print(personeelsleden.get(i).getFamilienaam());
+      out.write(' ');
+      out.write(' ');
+      out.print(personeelsleden.get(i).getVoornaam());
+      out.write(" </option>\n");
+      out.write("                        ");
+} else {
+      out.write("\n");
+      out.write("                        <option value=\"");
+      out.print((i));
+      out.write("\"> ");
+      out.print(personeelsleden.get(i).getFamilienaam());
+      out.write(' ');
+      out.write(' ');
+      out.print(personeelsleden.get(i).getVoornaam());
+      out.write(" </option>\n");
+      out.write("                        ");
+}
+                            }
+                        
+      out.write("\n");
+      out.write("                    </select>\n");
       out.write("                </p>\n");
       out.write("                <p> \n");
       out.write("                    <input type=\"submit\" value=\"Wijzigen!\" name=\"attractieWijzigen\" class=\"verzendenCSS\"> \n");
       out.write("                </p>\n");
       out.write("            </form>\n");
-      out.write("\n");
       out.write("            <p> <a href=\"index.jsp\">Ga terug naar de homepagina</a> </p>\n");
-      out.write("\n");
       out.write("        </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");

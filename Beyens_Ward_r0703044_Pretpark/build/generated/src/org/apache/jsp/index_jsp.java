@@ -50,7 +50,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>Pretpark Ward Beyens</title>\n");
       out.write("        <link rel=\"stylesheet\" href=\"r0703044basis.css\">\n");
-      out.write("\n");
       out.write("    </head>\n");
       out.write("\n");
       out.write("    <body>\n");
@@ -88,7 +87,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </footer>\n");
       out.write("        </div>\n");
       out.write("    </body>\n");
-      out.write("\n");
       out.write("</html>\n");
       out.write("\n");
     } catch (Throwable t) {
